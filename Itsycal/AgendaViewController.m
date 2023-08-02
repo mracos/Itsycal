@@ -150,6 +150,14 @@ static NSString *kEventCellIdentifier = @"EventCell";
     }
 }
 
+- (void)setShowAttendees:(BOOL)showAttendees
+{
+    if (_showAttendees != showAttendees) {
+        _showAttendees = showAttendees;
+        [self reloadData];
+    }
+}
+
 - (void)reloadData
 {
     [_tv reloadData];
@@ -1032,9 +1040,9 @@ static NSString *kEventCellIdentifier = @"EventCell";
     // Hide recurrence row IF there's no recurrence rule.
     [_grid rowAtIndex:4].hidden = !info.event.hasRecurrenceRules;
     
-    // Hide attendees and separator row above IF does not have attendees
-    [_grid rowAtIndex:6].hidden = !info.event.hasAttendees;
-    [_grid rowAtIndex:5].hidden = !info.event.hasAttendees;
+    bool showAttendees = [[NSUserDefaults standardUserDefaults] boolForKey:kShowAttendees];
+    [_grid rowAtIndex:6].hidden = !showAttendees || !info.event.hasAttendees;
+    [_grid rowAtIndex:5].hidden = !showAttendees || !info.event.hasAttendees;
     
     // Hide note row and separator row above it IF there's no note AND no URL.
     [_grid rowAtIndex:8].hidden = !info.event.hasNotes && !info.event.URL;
@@ -1124,7 +1132,7 @@ static NSString *kEventCellIdentifier = @"EventCell";
     }
     
     // Attendees
-    if (info.event.hasAttendees) {
+    if (showAttendees && info.event.hasAttendees) {
         [self populateTextView:_attendees
                     withString:([[info.event.attendees valueForKey:@"name"] componentsJoinedByString:@"\n"])
                     heightConstraint:_attendeesHeight];

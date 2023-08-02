@@ -110,6 +110,7 @@ Por favor, cerrar Itsycal, trasladar a la carpeta Aplicaciones, y volver a arran
 "Show day of week in icon" = "El icono muestra día de la semana";
 "Show event dots" = "Mostrar puntos para eventos";
 "Show event location" = "Mostrar ubicación del evento";
+"Show attendees" = "Mostrar a los asistentes";
 "Show month in icon" = "El icono muestra mes";
 "Starts:" = "Empieza:";
 "Sunday" = "Domingo";

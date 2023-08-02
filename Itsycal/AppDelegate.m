@@ -36,6 +36,7 @@
         kWeekStartDOW:         @(weekStartDOW), // Sun=0, Mon=1,... (MoCalendar.h)
         kShowMonthInIcon:      @(NO),
         kShowDayOfWeekInIcon:  @(NO),
+        kShowAttendees:        @(YES),
         kShowEventDots:        @(YES),
         kUseColoredDots:       @(YES),
         kThemePreference:      @0, // System=0, Light=1, Dark=2
